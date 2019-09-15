@@ -30,7 +30,7 @@ func LoadLocales(path string) error {
 	return nil
 }
 
-//Translate is use to translate error to languate peaple can read.
+//Translate is use to translate error to language peaple can read.
 func Translate(key string) (result string) {
 	dic := *Dictionary
 	keys := strings.Split(key, ".")
