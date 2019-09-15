@@ -1,3 +1,3 @@
 # b-tube 写一个youtube
-.......
+***
 ### mvc和gin的使用
