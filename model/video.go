@@ -17,6 +17,7 @@ type Video struct {
 	Info   string
 	URL    string
 	Avatar string
+	Author string
 }
 
 // AvatarURL avatar of video.

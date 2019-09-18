@@ -11,7 +11,7 @@ import (
 type UserRigisterService struct {
 	Nickname        string `json:"nickname" form:"nickname" binding:"required,min=2,max=30"`
 	UserName        string `json:"user_name" form:"user_name" binding:"requird,min=2,max=30"`
-	Password        string `json:"password" form:"password" binding:"require,min=8,max=30"`
+	Password        string `json:"password" form:"password" binding:"require,min=8,max=40"`
 	PasswordConfirm string `josn:"password_confirm" form:"password_confirm" binding:"require,min=8,max=30"`
 }
 

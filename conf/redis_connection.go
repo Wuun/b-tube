@@ -1,7 +1,6 @@
 package conf
 
 import (
-	"os"
 	"strconv"
 
 	"github.com/go-redis/redis"
@@ -12,10 +11,10 @@ var RedisConnection *redis.Client
 
 // Redis init the RedisConnection.
 func Redis() {
-	db, _ := strconv.ParseUint(os.Getenv("REDIS_DB"), 10, 64)
+	db, _ := strconv.ParseUint(GlobalConf.RedisDB, 10, 64)
 	client := redis.NewClient(&redis.Options{
-		Addr:     os.Getenv("REDIS_ADDR"),
-		Password: os.Getenv("REDIS_PW"),
+		Addr:     GlobalConf.RedisAddr,
+		Password: GlobalConf.RedisPW,
 		DB:       int(db),
 	})
 
