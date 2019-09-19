@@ -18,10 +18,14 @@ type User struct {
 }
 
 const (
-	PasswordCost = 12
-	ActiveUser   = "active_user"
+	//PasswordCost use to set password secrect.
+	PasswordCost int = 12
+	//ActiveUser use to tag user who is active.
+	ActiveUser = "active_user"
+	//InactiveUser use to tag user who is inactive.
 	InactiveUser = "inactive_user"
-	SuspendUser  = "suspend_user"
+	//SuspendUser use to tag user who is supend.
+	SuspendUser = "suspend_user"
 )
 
 // GetUser get the user information.

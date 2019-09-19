@@ -10,6 +10,7 @@ require (
 	github.com/gin-contrib/sessions v0.0.1
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-redis/redis v6.15.4+incompatible
+	github.com/google/uuid v1.1.1
 	github.com/jinzhu/gorm v1.9.10
 	github.com/joho/godotenv v1.3.0
 	github.com/satori/go.uuid v1.2.0 // indirect

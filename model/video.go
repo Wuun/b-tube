@@ -13,11 +13,11 @@ import (
 // Video model of video
 type Video struct {
 	gorm.Model
-	Title  string
-	Info   string
-	URL    string
-	Avatar string
-	Author string
+	Title    string
+	Info     string
+	Video    string
+	Avatar   string
+	AuthorID uint
 }
 
 // AvatarURL avatar of video.
@@ -32,7 +32,7 @@ func (video *Video) AvatarURL() string {
 func (video *Video) VideoURL() string {
 	client, _ := oss.New(os.Getenv("OSS_END_POINT"), os.Getenv("OSS_ACCESS_KEY_ID"), os.Getenv("OSS_ACCESS_KEY_SECRET"))
 	bucket, _ := client.Bucket(os.Getenv("OSS_BUCKET"))
-	signedGetURL, _ := bucket.SignURL(video.URL, oss.HTTPGet, 600)
+	signedGetURL, _ := bucket.SignURL(video.Video, oss.HTTPGet, 600)
 	return signedGetURL
 }
 
