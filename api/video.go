@@ -16,3 +16,28 @@ func UploadVideo(c *gin.Context) {
 		c.JSON(200, serializer.ErrResponse(err))
 	}
 }
+
+//ListVideo is use to list all video the server has.
+func ListVideos(c *gin.Context) {
+	var srv service.ListVideoService
+	if err := c.ShouldBind(srv); err != nil {
+		c.JSON(200, srv.List())
+	} else {
+		c.JSON(200, serializer.ErrorResponse(err))
+	}
+}
+
+func VideoDetail(c *gin.Context) {
+	var srv service.VideoDetailService
+	c.JSON(200, srv.Show(c.Param("id")))
+}
+
+func DeleteVideo(c *gin.Context) {
+	var srv service.DeleteVideoService
+	id := c.Param("id")
+	c.JSON(200, srv.Delete(id))
+}
+
+//func UpdateVideo(c *gin.Context){
+//
+//}

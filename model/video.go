@@ -13,11 +13,12 @@ import (
 // Video model of video
 type Video struct {
 	gorm.Model
-	Title    string
-	Info     string
-	Video    string
-	Avatar   string
-	AuthorID uint
+	Title     string
+	Info      string
+	Video     string
+	Avatar    string
+	AuthorID  uint
+	TotalView uint64
 }
 
 // AvatarURL avatar of video.

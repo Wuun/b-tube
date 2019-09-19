@@ -28,7 +28,7 @@ func init() {
 	//connect to mysql
 	Database(GlobalConf.MysqlDSN)
 	//connection to redis.
-	Redis()
+	//Redis()
 }
 
 //InitConf init the GlobalConf
@@ -36,14 +36,14 @@ func InitConf() {
 	godotenv.Load()
 	dictionaryAddr := os.Getenv("DICTIONARY_ADDR")
 	mysqlDSN := os.Getenv("MYSQL_DSN")
-	redisDB := os.Getenv("REDIS_DB")
-	redisAddr := os.Getenv("REDIS_ADDR")
-	redisPW := os.Getenv("REDIS_PW")
+	//redisDB := os.Getenv("REDIS_DB")
+	//redisAddr := os.Getenv("REDIS_ADDR")
+	//redisPW := os.Getenv("REDIS_PW")
 	GlobalConf = &Conf{
 		DictionaryDRR: dictionaryAddr,
 		MysqlDSN:      mysqlDSN,
-		RedisDB:       redisDB,
-		RedisAddr:     redisAddr,
-		RedisPW:       redisPW,
+		//RedisDB:       redisDB,
+		//RedisAddr:     redisAddr,
+		//RedisPW:       redisPW,
 	}
 }
