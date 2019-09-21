@@ -37,7 +37,3 @@ func DeleteVideo(c *gin.Context) {
 	id := c.Param("id")
 	c.JSON(200, srv.Delete(id))
 }
-
-//func UpdateVideo(c *gin.Context){
-//
-//}
