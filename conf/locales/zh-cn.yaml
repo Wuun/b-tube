@@ -1,11 +1,11 @@
 Tag:
   required: "必须存在，而且不能为空"  
-  min: "该字段内容太短"
-  max: "该字段内容太长"
+  min: "太短"
+  max: "太长"
 Field:
   Name: "名称"
   Nickname: "用户昵称"
   UserName: "用户名"
   Password: "密码"
-  PasswordConfirm: "密码校验"
+  PasswordConfirm: "确认密码"
   

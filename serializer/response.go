@@ -32,14 +32,14 @@ func ErrorResponse(err error) Response {
 	if _, ok := err.(*json.UnmarshalTypeError); ok {
 		return Response{
 			StatusCode: 40001,
-			Msg:        "JSON类型不匹配",
+			Msg:        "JSON data format wrong.",
 			Error:      fmt.Sprint(err),
 		}
 	}
 
 	return Response{
 		StatusCode: 40001,
-		Msg:        "参数错误",
+		Msg:        "parameter wrong.",
 		Error:      fmt.Sprint(err),
 	}
 }

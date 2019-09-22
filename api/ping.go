@@ -10,7 +10,7 @@ import (
 func Ping(c *gin.Context) {
 	c.JSON(
 		200,
-		serializer.Response{
+		&serializer.Response{
 			StatusCode: 0,
 			Msg:        "Pong!",
 		})
