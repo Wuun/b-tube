@@ -9,5 +9,5 @@ func main() {
 	//load config from env.
 	conf.Init()
 	server := server.Router()
-	server.Run("127.0.0.1:8948")
+	server.Run(conf.GlobalConf.WebAddr)
 }

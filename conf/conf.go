@@ -14,6 +14,7 @@ type Conf struct {
 	DictionaryDRR  string
 	MysqlDSN       string
 	SessionSecrect string
+	WebAddr        string
 }
 
 //Init initial the config of the server,etc mysql connection,redis connection.
@@ -34,9 +35,11 @@ func InitConf() {
 	dictionaryAddr := os.Getenv("DICTIONARY_ADDR")
 	mysqlDSN := os.Getenv("MYSQL_DSN")
 	sessionSecrect := os.Getenv("SESSION_SECRET")
+	webAddr := os.Getenv("WEB_ADDR")
 	GlobalConf = &Conf{
 		DictionaryDRR:  dictionaryAddr,
 		MysqlDSN:       mysqlDSN,
 		SessionSecrect: sessionSecrect,
+		WebAddr:        webAddr,
 	}
 }
