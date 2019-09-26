@@ -6,8 +6,10 @@ import (
 	"btube/serializer"
 )
 
+//DeleteVideoService delete video.
 type DeleteVideoService struct{}
 
+//Delete delete video.
 func (srv *DeleteVideoService) Delete(id string) *serializer.Response {
 	if err := conf.MySQLConnect.Where("id = ?", id).Delete(&model.Video{}).Error; err != nil {
 		return &serializer.Response{

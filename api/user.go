@@ -20,7 +20,7 @@ func UserRigister(c *gin.Context) {
 		if user, response := srv.Rigistry(); response != nil {
 			c.JSON(200, response)
 		} else {
-			res := serializer.BuildUserResponse(user)
+			res := serializer.BuildUserResponse(&user)
 			c.JSON(200, res)
 		}
 		return
@@ -39,11 +39,11 @@ func UserLogin(c *gin.Context) {
 			session.Clear()
 			session.Set("user_id", user.ID)
 			session.Save()
-			resp := serializer.BuildUserResponse(user)
+			resp := serializer.BuildUserResponse(&user)
 			c.JSON(200, resp)
 		}
 	} else {
-		c.JSON(200, serializer.ErrorResponse(err))
+		c.JSON(200, serializer.ErrResponse(err))
 	}
 }
 
@@ -79,6 +79,6 @@ func CurrentUser(c *gin.Context) *model.User {
 //GetUserInformation return the user's information to user.
 func GetUserInformation(c *gin.Context) {
 	user := CurrentUser(c)
-	res := serializer.BuildUserResponse(*user)
+	res := serializer.BuildUserResponse(user)
 	c.JSON(200, res)
 }

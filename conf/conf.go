@@ -27,6 +27,7 @@ func Init() {
 
 	//connect to mysql
 	Database(GlobalConf.MysqlDSN)
+	Redis()
 }
 
 //InitConf init the GlobalConf

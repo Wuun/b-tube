@@ -19,7 +19,7 @@ type UserResponse struct {
 }
 
 // BuildUser id the user response.
-func BuildUser(user model.User) User {
+func BuildUser(user *model.User) User {
 	return User{
 		ID:        user.ID,
 		UserName:  user.UserName,
@@ -31,7 +31,7 @@ func BuildUser(user model.User) User {
 }
 
 // BuildUserResponse serialze the user response.
-func BuildUserResponse(user model.User) UserResponse {
+func BuildUserResponse(user *model.User) UserResponse {
 	return UserResponse{
 		Data: BuildUser(user),
 	}

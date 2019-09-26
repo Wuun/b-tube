@@ -1,9 +1,10 @@
 package model
 
 import (
+	"os"
+
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/jinzhu/gorm"
-	"os"
 )
 
 // Video model of video
