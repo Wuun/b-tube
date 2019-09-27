@@ -8,21 +8,14 @@ import (
 	"os"
 	"strconv"
 	"strings"
-
-	"github.com/robfig/cron"
 )
 
-//Like is the crontab of like operation.
-func Like() {
-	c := cron.New()
-	c.AddFunc("0 /5 * * * *", likeOperation)
-	c.Start()
-}
-
-func likeOperation() {
+//Like is the crontab of like operation
+func Like() error {
 	hashSet, err := conf.RedisConnect.HGetAll(os.Getenv("REDIS_LIKE_KEY")).Result()
 	if err != nil {
 		log.Println(err)
+		return err
 	}
 	for k, v := range hashSet {
 		err = logLikeData(k, v)
@@ -32,6 +25,7 @@ func likeOperation() {
 		}
 		conf.RedisConnect.HDel(os.Getenv("REDIS_LIKE_KEY"), k)
 	}
+	return nil
 }
 
 func logLikeData(s string, v string) error {

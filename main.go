@@ -9,7 +9,7 @@ import (
 func main() {
 	//load config from env.
 	conf.Init()
-	cron.Like()
+	cron.Init()
 	server := server.Router()
 	server.Run(conf.GlobalConf.WebAddr)
 }

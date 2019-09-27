@@ -22,6 +22,8 @@ func (srv *VideoDetailService) Show(id string) *serializer.Response {
 		}
 	}
 	video = serializer.BuildVideo(videoModel)
+	//add 1 ciew to redis for today's view.
+	videoModel.AddView()
 	return &serializer.Response{
 		StatusCode: 0,
 		Data:       video,
