@@ -9,7 +9,7 @@ import (
 
 //Dictionary is a singleton for recoding the error we would get
 //when try to validate the struct we want to validate by using
-//valisate.v9 package.(we would use yaml to recoding the information.)
+//validate.v9 package.(we would use yaml to recoding the information.)
 var Dictionary *map[interface{}]interface{}
 
 // LoadLocales get the content we write in yaml
