@@ -16,23 +16,19 @@ type OSSUploadTokenService struct {
 
 //GetSignURLForVideo get the url with sign from OSS.
 func (tokenSrv *OSSUploadTokenService) GetSignURLForVideo() *serializer.Response {
-	endpoint := os.Getenv("OSS_ENDPOINT")
-	accessKey := os.Getenv("OSS_ACCESS_KEY")
-	bucketName := os.Getenv("OSS_BUCKET_NAME")
-	ossScrecct := os.Getenv("OSS_SECRECT")
-	client, err := oss.New(endpoint, accessKey, ossScrecct, oss.Timeout(10, 10000))
+	client, err := oss.New(os.Getenv("OSS_END_POINT"), os.Getenv("OSS_ACCESS_KEY_ID"), os.Getenv("OSS_ACCESS_KEY_SECRET"))
 	if err != nil {
 		return &serializer.Response{
 			StatusCode: 40002,
-			Msg:        "can't get token for upload.",
+			Msg:        "can't get token for upload for oss configure error.",
 		}
 	}
 
-	bucket, err := client.Bucket(bucketName)
+	bucket, err := client.Bucket(os.Getenv("OSS_BUCKET"))
 	if err != nil {
 		return &serializer.Response{
 			StatusCode: 40002,
-			Msg:        "can't get token for upload.",
+			Msg:        "can't get token for upload for oss configure error.",
 		}
 	}
 
@@ -65,23 +61,20 @@ func (tokenSrv *OSSUploadTokenService) GetSignURLForVideo() *serializer.Response
 
 //GetSignURLForAvatar get the url with sign from OSS.
 func (tokenSrv *OSSUploadTokenService) GetSignURLForAvatar() *serializer.Response {
-	endpoint := os.Getenv("OSS_ENDPOINT")
-	accessKey := os.Getenv("OSS_ACCESS_KEY")
-	bucketName := os.Getenv("OSS_BUCKET_NAME")
-	ossSecrect := os.Getenv("OSS_ACCESS_KEY_SECRET")
-	client, err := oss.New(endpoint, accessKey, ossSecrect)
+
+	client, err := oss.New(os.Getenv("OSS_END_POINT"), os.Getenv("OSS_ACCESS_KEY_ID"), os.Getenv("OSS_ACCESS_KEY_SECRET"))
 	if err != nil {
 		return &serializer.Response{
 			StatusCode: 40002,
-			Msg:        "can't get token for upload.",
+			Msg:        "can't get token for upload for oss configure error.",
 		}
 	}
 
-	bucket, err := client.Bucket(bucketName)
+	bucket, err := client.Bucket(os.Getenv("OSS_BUCKET"))
 	if err != nil {
 		return &serializer.Response{
 			StatusCode: 40002,
-			Msg:        "can't get token for upload.",
+			Msg:        "can't get token for upload for oss configure error.",
 		}
 	}
 
