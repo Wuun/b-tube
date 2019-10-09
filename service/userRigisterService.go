@@ -10,9 +10,9 @@ import (
 //rigisting behaver.
 type UserRigisterService struct {
 	Nickname        string `json:"nickname" form:"nickname" binding:"required,min=2,max=30"`
-	UserName        string `json:"user_name" form:"user_name" binding:"requird,min=2,max=30"`
-	Password        string `json:"password" form:"password" binding:"require,min=8,max=40"`
-	PasswordConfirm string `josn:"password_confirm" form:"password_confirm" binding:"require,min=8,max=30"`
+	UserName        string `json:"user_name" form:"user_name" binding:"required,min=2,max=30"`
+	Password        string `json:"password" form:"password" binding:"required,min=8,max=40"`
+	PasswordConfirm string `json:"password_confirm" form:"password_confirm" binding:"required,min=8,max=30"`
 }
 
 //Check check the user's rigistry information is valid or not.
@@ -36,7 +36,7 @@ func (srv *UserRigisterService) Check() *serializer.Response {
 	}
 
 	count = 0
-	if conf.MySQLConnect.Where("user_name = ?").Find(&user).Count(&count); count > 0 {
+	if conf.MySQLConnect.Where("user_name = ?",srv.UserName).Find(&user).Count(&count); count > 0 {
 		return &serializer.Response{
 			StatusCode: 40001,
 			Msg:        "user name has been used by others.",
@@ -45,10 +45,10 @@ func (srv *UserRigisterService) Check() *serializer.Response {
 	return nil
 }
 
-//Rigistry is uesd for user rigistry.
+//Registry is used for user registry.
 func (srv *UserRigisterService) Rigistry() (user model.User, resp *serializer.Response) {
 	user = model.User{
-		NickName: srv.Nickname,
+		Nickname: srv.Nickname,
 		UserName: srv.UserName,
 		Status:   model.ActiveUser,
 	}

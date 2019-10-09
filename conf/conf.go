@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"btube/cache"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -27,12 +28,14 @@ func Init() {
 
 	//connect to mysql
 	Database(GlobalConf.MysqlDSN)
-	Redis()
+	cache.Redis()
 }
 
 //InitConf init the GlobalConf
 func InitConf() {
-	godotenv.Load()
+	if err := godotenv.Load();err != nil {
+		panic(err)
+	}
 	dictionaryAddr := os.Getenv("DICTIONARY_ADDR")
 	mysqlDSN := os.Getenv("MYSQL_DSN")
 	sessionSecrect := os.Getenv("SESSION_SECRET")

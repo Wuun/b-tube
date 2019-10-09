@@ -1,6 +1,7 @@
 package service
 
 import (
+	"btube/cache"
 	"btube/conf"
 	"btube/model"
 	"btube/serializer"
@@ -13,7 +14,7 @@ type DailyRankService struct{}
 //Rank return daily rank.
 func (srv *DailyRankService)Rank() *serializer.Response {
 	var videos []model.Video
-	vids, err := conf.RedisConnect.ZRevRange("b-tube::todyview", 0, 9).Result()
+	vids, err := cache.RedisConnect.ZRevRange("b-tube::todyview", 0, 9).Result()
 	if err != nil {
 		return &serializer.Response{
 			StatusCode: 4001,

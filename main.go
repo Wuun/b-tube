@@ -2,14 +2,15 @@ package main
 
 import (
 	"btube/conf"
-	"btube/cron"
+	cron "btube/cronjob"
 	"btube/server"
 )
 
 func main() {
 	//load config from env.
 	conf.Init()
+	//
 	cron.Init()
-	server := server.Router()
-	server.Run(conf.GlobalConf.WebAddr)
+	s := server.Router()
+	panic(s.Run(conf.GlobalConf.WebAddr))
 }

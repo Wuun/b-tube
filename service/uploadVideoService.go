@@ -8,11 +8,11 @@ import (
 
 //UploadVideoService is used to recoding video information to mysql.
 type UploadVideoService struct {
-	Title    string
-	Info     string
-	Video    string
-	Avatar   string
-	AuthorID uint
+	Title    string `form:"title"`
+	Info     string `form:"info"`
+	Video    string `form:"video"`
+	Avatar   string `form:"avatar"`
+	AuthorID uint   `form:"author_id"`
 }
 
 //Upload is ued to recording video.

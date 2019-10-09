@@ -1,19 +1,20 @@
 package cron
 
 import (
+	"btube/cache"
 	"btube/conf"
 	"btube/model"
 	"strconv"
 )
 
-//DeleteTodayView delete today's view and polus it to total view.
+//DeleteTodayView delete today's view and plus it to total view.
 func DeleteTodayView() error {
-	s, err := conf.RedisConnect.ZRange("b-tube::todyview", 0, -1).Result()
+	s, err := cache.RedisConnect.ZRange("b-tube::todyview", 0, -1).Result()
 	if err != nil {
 		return err
 	}
 	for _, v := range s {
-		score, err := conf.RedisConnect.ZScore("b-tube::todyview", v).Result()
+		score, err := cache.RedisConnect.ZScore("b-tube::todyview", v).Result()
 		if err != nil {
 			return err
 		}
@@ -26,7 +27,7 @@ func DeleteTodayView() error {
 		video.ID = uint(id)
 		conf.MySQLConnect.First(&video)
 		conf.MySQLConnect.Model(&video).Update("view", uint64(score)+video.View)
-		conf.RedisConnect.ZRem("b-tube::todyview", v)
+		cache.RedisConnect.ZRem("b-tube::todyview", v)
 	}
 	return nil
 }

@@ -1,5 +1,5 @@
 Tag:
-  required: "必须存在，而且不能为空"  
+  required: "必须存在，且不能为空"
   min: "太短"
   max: "太长"
 Field:

@@ -1,7 +1,8 @@
 package model
 
 import (
-	"btube/conf"
+	"btube/cache"
+
 	"os"
 	"strconv"
 
@@ -40,8 +41,8 @@ func (video *Video) VideoURL() string {
 //AddView add 1 to today's view in redis.
 func (video *Video) AddView() {
 	id := strconv.Itoa(int(video.ID))
-	if _, err := conf.RedisConnect.ZScore("b-tube::todyview", id).Result(); err != nil {
-		conf.RedisConnect.ZAdd("b-tube::todyview", redis.Z{Score: 0, Member: id})
+	if _, err := cache.RedisConnect.ZScore("b-tube::todyview", id).Result(); err != nil {
+		cache.RedisConnect.ZAdd("b-tube::todyview", redis.Z{Score: 0, Member: id})
 	}
-	conf.RedisConnect.ZIncrBy("b-tube::todyview", 1, id)
+	cache.RedisConnect.ZIncrBy("b-tube::todyview", 1, id)
 }

@@ -1,7 +1,7 @@
 package service
 
 import (
-	"btube/conf"
+	"btube/cache"
 	"btube/serializer"
 	"os"
 	"strings"
@@ -18,7 +18,7 @@ type LikeService struct {
 //a video.
 func (thumb *LikeService) Operation() *serializer.Response {
 	key := buildKey(thumb.UserID, thumb.VideoID)
-	if err := conf.RedisConnect.HSet(os.Getenv("REDIS_LIKE_KEY"), key, thumb.Code).Err(); err != nil {
+	if err := cache.RedisConnect.HSet(os.Getenv("REDIS_LIKE_KEY"), key, thumb.Code).Err(); err != nil {
 		return &serializer.Response{
 			StatusCode: 4002,
 			Msg:        "Operation falid.",

@@ -68,8 +68,8 @@ func (tokenSrv *OSSUploadTokenService) GetSignURLForAvatar() *serializer.Respons
 	endpoint := os.Getenv("OSS_ENDPOINT")
 	accessKey := os.Getenv("OSS_ACCESS_KEY")
 	bucketName := os.Getenv("OSS_BUCKET_NAME")
-	ossScrecct := os.Getenv("OSS_SECRECT")
-	client, err := oss.New(endpoint, accessKey, ossScrecct, oss.Timeout(10, 92400))
+	ossSecrect := os.Getenv("OSS_ACCESS_KEY_SECRET")
+	client, err := oss.New(endpoint, accessKey, ossSecrect)
 	if err != nil {
 		return &serializer.Response{
 			StatusCode: 40002,

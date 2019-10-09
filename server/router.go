@@ -16,7 +16,7 @@ func Router() *gin.Engine {
 	btube := router.Group("/btube/api/v1")
 	{
 		btube.GET("ping", api.Ping)
-		btube.POST("registry", api.UserRigister)
+		btube.POST("registry", api.UserRegister)
 		btube.POST("login", api.UserLogin)
 		btube.GET("logout", api.UserLogout)
 		btube.GET("user_info", api.GetUserInformation)
@@ -26,6 +26,7 @@ func Router() *gin.Engine {
 		btube.POST("upload_video", api.UploadVideo)
 		btube.GET("list_video", api.ListVideos)
 		btube.GET("video_detail/:id", api.VideoDetail)
+		btube.GET("rank",api.Rank)
 	}
 	return router
 }

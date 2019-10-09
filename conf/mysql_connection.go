@@ -1,11 +1,13 @@
 package conf
 
 import (
+	"btube/model"
 	"fmt"
 	"time"
 
-	"github.com/Wuun/giligili/model"
 	"github.com/gin-gonic/gin"
+	//
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 )
 

@@ -8,8 +8,8 @@ import (
 
 //ListVideoService is use to  list video user want.
 type ListVideoService struct {
-	Start int
-	limit int
+	Limit int 	`json:"limit" form:"limit" binding:"required"`
+	Start int	`json:"start" form:"start" binding:"required"`
 }
 
 //List get the videos.
@@ -18,7 +18,8 @@ func (srv *ListVideoService) List() *serializer.Response {
 		videos       []model.Video
 		videosResult []serializer.Video
 	)
-	if err := conf.MySQLConnect.Limit(srv.limit).Offset(srv.Start).Find(&videos).Error; err != nil {
+	err := conf.MySQLConnect.Limit(srv.Limit).Offset(srv.Start).Find(&videos).Error
+	if err != nil {
 		return &serializer.Response{
 			StatusCode: 40001,
 			Msg:        "params is wrong.",

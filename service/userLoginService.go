@@ -9,7 +9,7 @@ import (
 //UserLoginService is a service used for user login.
 type UserLoginService struct {
 	Nickname string `json:"nickname" form:"nickname" binding:"required,min=3,max=30"`
-	Password string `json:"passwoed" form:"password" binding:"required,min=8,max=40"`
+	Password string `json:"password" form:"password" binding:"required,min=8,max=40"`
 }
 
 //Login is use for user login and return user's information when success.

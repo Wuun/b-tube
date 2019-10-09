@@ -1,5 +1,4 @@
-package conf
-
+package cache
 import (
 	"os"
 	"strconv"

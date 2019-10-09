@@ -1,6 +1,7 @@
 package cron
 
 import (
+	"btube/cache"
 	"btube/conf"
 	"btube/model"
 	"errors"
@@ -12,7 +13,7 @@ import (
 
 //Like is the crontab of like operation
 func Like() error {
-	hashSet, err := conf.RedisConnect.HGetAll(os.Getenv("REDIS_LIKE_KEY")).Result()
+	hashSet, err := cache.RedisConnect.HGetAll(os.Getenv("REDIS_LIKE_KEY")).Result()
 	if err != nil {
 		log.Println(err)
 		return err
@@ -23,7 +24,7 @@ func Like() error {
 			log.Println(err)
 			continue
 		}
-		conf.RedisConnect.HDel(os.Getenv("REDIS_LIKE_KEY"), k)
+		cache.RedisConnect.HDel(os.Getenv("REDIS_LIKE_KEY"), k)
 	}
 	return nil
 }

@@ -1,8 +1,6 @@
 package model
 
 import (
-	"btube/conf"
-
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -12,7 +10,7 @@ type User struct {
 	gorm.Model
 	UserName       string
 	PasswordDigest string
-	NickName       string
+	Nickname       string
 	Status         string
 	Avatar         string `gorm:"size:1000"`
 }
@@ -28,12 +26,12 @@ const (
 	SuspendUser = "suspend_user"
 )
 
-// GetUser get the user information.
-func GetUser(ID interface{}) (User, error) {
-	var user User
-	result := conf.MySQLConnect.First(&user, ID)
-	return user, result.Error
-}
+//// GetUser get the user information.
+//func GetUser(ID interface{}) (User, error) {
+//	var user User
+//	result := conf.MySQLConnect.First(&user, ID)
+//	return user, result.Error
+//}
 
 // SetPassword set the password of user.
 func (user *User) SetPassword(password string) error {

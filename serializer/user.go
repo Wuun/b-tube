@@ -23,14 +23,14 @@ func BuildUser(user *model.User) User {
 	return User{
 		ID:        user.ID,
 		UserName:  user.UserName,
-		Nickname:  user.NickName,
+		Nickname:  user.Nickname,
 		Status:    user.Status,
 		Avatar:    user.Avatar,
 		CreatedAt: user.CreatedAt.Unix(),
 	}
 }
 
-// BuildUserResponse serialze the user response.
+// BuildUserResponse serialzer the user response.
 func BuildUserResponse(user *model.User) UserResponse {
 	return UserResponse{
 		Data: BuildUser(user),

@@ -19,8 +19,8 @@ func UploadVideo(c *gin.Context) {
 
 //ListVideos is use to list all video the server has.
 func ListVideos(c *gin.Context) {
-	var srv service.ListVideoService
-	if err := c.ShouldBind(srv); err != nil {
+	srv := service.ListVideoService{}
+	if err := c.ShouldBind(&srv); err == nil {
 		c.JSON(200, srv.List())
 	} else {
 		c.JSON(200, serializer.ErrResponse(err))

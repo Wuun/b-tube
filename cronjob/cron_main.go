@@ -2,6 +2,7 @@ package cron
 
 import (
 	"fmt"
+	"log"
 	"reflect"
 	"runtime"
 	"time"
@@ -12,13 +13,19 @@ import (
 //Init start a cron job.
 func Init() {
 	c := cron.New()
-	c.AddFunc("0 /5 * * * *", func() {
+	err := c.AddFunc("0 /5 * * * *", func() {
 		Run(Like)
 	})
+	if err != nil {
+		log.Println(err)
+	}
 
-	c.AddFunc("0 0 0 * *  *", func() {
+	err = c.AddFunc("0 0 0 * *  *", func() {
 		Run(DeleteTodayView)
 	})
+	if err != nil {
+		log.Println(err)
+	}
 	c.Start()
 }
 

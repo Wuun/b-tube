@@ -10,13 +10,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//UserRigister use for user rigistry.
-func UserRigister(c *gin.Context) {
+//UserRegister use for user registry.
+func UserRegister(c *gin.Context) {
 	var (
-		srv service.UserRigisterService
 		err error
 	)
-	if err = c.ShouldBind(srv); err == nil {
+	srv := service.UserRigisterService{}
+	if err = c.ShouldBind(&srv); err == nil {
 		if user, response := srv.Rigistry(); response != nil {
 			c.JSON(200, response)
 		} else {
@@ -31,7 +31,7 @@ func UserRigister(c *gin.Context) {
 //UserLogin is use for user login and return user massage when success.
 func UserLogin(c *gin.Context) {
 	var srv service.UserLoginService
-	if err := c.ShouldBind(srv); err == nil {
+	if err := c.ShouldBind(&srv); err == nil {
 		if user, resp := srv.Login(); resp != nil {
 			c.JSON(200, resp)
 		} else {
